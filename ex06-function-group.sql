@@ -80,3 +80,6 @@ HAVING SUM(salary) > 13000
 ORDER BY total_salary;
 
 -- 그룹함수 중첩 가능
+SELECT MAX(AVG(salary)) AS max_avg_salary
+FROM employees
+GROUP BY department_id;
