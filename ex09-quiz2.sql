@@ -21,22 +21,23 @@ ON e.department_id = d.department_id
 GROUP BY department_name;
 
 -- 5. 각 직원의 성(last_name)과 해당 직원이 속한 부서의 최소 급여(min_salary) 조회하기
-SELECT oe.last_name, od.Min_Salary
-FROM employees oe
-JOIN (
-    SELECT d.department_id, MIN(e.salary) AS Min_Salary
-    FROM departments d 
-    JOIN employees e ON d.department_id = e.department_id
-    GROUP BY d.department_id
-    ) od
-ON oe.department_id = od.department_id
-;
+SELECT oe.last_name, od.min_salary
+FROM employees oe 
+JOIN
+    (SELECT d.department_id, MIN(e.salary) AS min_salary
+    FROM employees e JOIN departments d
+    ON e.department_id = d.department_id
+    GROUP BY d.department_id)
+    od
+ON oe.department_id = od.department_id;
+
 -- 6. 각 부서의 이름(department_name)과 해당 부서에 속한 직원 중 가장 높은 급여(highest_salary) 조회하기
 SELECT d.department_name, MAX(e.salary) AS highest_salary
 FROM departments d
 JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_name
-;
+GROUP BY d.department_name;
+--------
+
 -- 7. 각 직원의 성(last_name)과 해당 직원의 매니저의 성(last_name) 및 부서 이름(department_name) 조회하기
 SELECT e.last_name AS WORKER_LAST_NAME , m.last_name AS MANAGER_LAST_NAME, d.department_name
 FROM employees e 
