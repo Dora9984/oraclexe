@@ -65,6 +65,8 @@ FROM (
 ) oe 
 JOIN employees om ON oe.manager_id = om.employee_id
 ;
+
+-------- 여기부터
 -- 10. 직원들 중에서 급여(salary)가 10000 이상인 직원들의 성(last_name)과 해당 직원의 부서 이름(department_name) 조회하기
 SELECT e.last_name, d.department_name, e.salary
 FROM employees e 
