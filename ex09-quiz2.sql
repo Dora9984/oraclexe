@@ -36,14 +36,27 @@ SELECT d.department_name, MAX(e.salary) AS highest_salary
 FROM departments d
 JOIN employees e ON d.department_id = e.department_id
 GROUP BY d.department_name;
---------
 
 -- 7. 각 직원의 성(last_name)과 해당 직원의 매니저의 성(last_name) 및 부서 이름(department_name) 조회하기
+SELECT emp.last_name AS worker_last_name, mgr.last_name AS manger_last_name, d.department_name
+FROM employees emp JOIN employees mgr 
+ON emp.manager_id = mgr.employee_id
+JOIN departments d ON emp.department_id = d.department_id;
+
 SELECT e.last_name AS WORKER_LAST_NAME , m.last_name AS MANAGER_LAST_NAME, d.department_name
 FROM employees e 
 JOIN employees m ON e.manager_id = m.employee_id
 JOIN departments d ON e.department_id = d.department_id;
+
 -- 8. 각 직원의 성(last_name)과 해당 직원이 속한 부서의 매니저의 성(last_name) 조회하기
+SELECT e.last_name AS worker_last_name, m.last_name AS manager_last_name
+FROM 
+    (SELECT oe.last_name, od.department_id, od.manager_id
+    FROM employees oe JOIN departments od
+    ON oe.department_id = od.department_id) e
+JOIN employees m ON e.manager_id = m.employee_id;
+---- 아직 잘 모르겠음 
+
 SELECT oe.last_name AS W_LAST_NAME , om.last_name AS M_LAST_NAME
 FROM (
     SELECT e.last_name , d.department_id, d.manager_id
