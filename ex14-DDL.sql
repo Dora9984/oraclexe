@@ -158,3 +158,10 @@ ALTER TABLE emp ADD (
 
 SELECT * FROM user_constraints
 WHERE constraint_name = 'SYS_C008362';
+
+CREATE TABLE boyfriend(
+    bname VARCHAR2(15),
+    beheight NUMBER(3),
+    bday VARCHAR2(30)
+);
+
