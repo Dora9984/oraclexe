@@ -1,4 +1,4 @@
--- sys에서
+---- sys에서
 ALTER SESSION SET "_ORACLE_SCRIPT"=true;
 
 CREATE USER scott IDENTIFIED BY tiger;
